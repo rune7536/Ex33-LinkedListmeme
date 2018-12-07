@@ -62,23 +62,34 @@ namespace Adt
 
         public void Delete(int b)
         {
-            Node temp = Head;
-            for (int i = 0; i < b - 1; i++)
+            switch (b)
             {
-                temp.Next = temp.Next.Next;
+                case 0:
+                    Node temp1 = Head;
+                    Head = Head.Next;
+                    temp1.Next = null;
+                    Count--;
+                    break;
+                default:
+                    Node temp2 = Head;
+                    for (int i = 0; i < b - 1; i++)
+                    {
+                        temp2 = temp2.Next;
+                    }
+                    temp2.Next = temp2.Next.Next;
+                    Count--;
+                    break;
             }
-            temp.Next = null;
         }
 
         public object ItemAt(int b)
         {
             Node pegepind = Head;
-            for (int i = 0; i < b - 1; i++)
+            for (int i = 0; i < b; i++)
             {
                 pegepind = pegepind.Next;
             }
             return pegepind.Data;
-
         }
 
         public override string ToString()
